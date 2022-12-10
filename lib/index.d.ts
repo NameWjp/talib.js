@@ -1,5 +1,5 @@
 /** @internal */
-declare type IWasmCTypes = 'i1' | 'i8' | 'i16' | 'i32' | 'i64' | 'float' | 'double';
+type IWasmCTypes = 'i1' | 'i8' | 'i16' | 'i32' | 'i64' | 'float' | 'double';
 /** @internal */
 interface IWasmModule {
     _malloc(size: number): number;
