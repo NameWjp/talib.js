@@ -8,11 +8,103 @@
 </head>
 <body>
   <script type="module">
-    import { init, ADD } from "https://unpkg.com/talib.js@0.1.0/lib/index.esm.js"
-    await init("https://unpkg.com/talib.js@0.1.0/lib/talib.wasm");
-    
-    const inReal = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-    console.log('talib.ADD result:', ADD({ inReal0: inReal, inReal1: inReal }));
+    import { init, STOCH } from "../lib/index.esm.js"
+    await init("../lib/talib.wasm");
+    const highList = [1.11772,1.1177,1.11787,1.11811,1.11798,1.11797,1.11776,1.11794,1.11817,1.118,1.11836,1.11846,1.11845,1.11805,1.11805,1.11812,1.11831,1.11829,1.11887,1.11759,1.1176,1.11764,1.11769,1.11767,1.11759,1.11789,1.11818,1.11829,1.11817,1.11835,1.11822,1.11791,1.11755,1.11764,1.11764,1.11777,1.11807,1.11812,1.11836,1.11849,1.1187,1.11874,1.11876,1.11892,1.11874,1.11842,1.11865,1.11825,1.11848,1.11848,1.11847,1.11852,1.11857,1.11855,1.11863,1.11869,1.11844,1.11845,1.11832,1.11822];
+    const lowList = [1.11701,1.11741,1.11766,1.11734,1.11747,1.11755,1.11752,1.11761,1.11766,1.11771,1.1179,1.11815,1.11804,1.11774,1.1178,1.11797,1.11802,1.11807,1.11742,1.1173,1.11729,1.1175,1.11745,1.11754,1.11735,1.1175,1.11784,1.11783,1.11792,1.11783,1.11773,1.1174,1.1174,1.11741,1.11749,1.11753,1.11764,1.11759,1.11774,1.11823,1.11829,1.1185,1.11854,1.11841,1.11838,1.11815,1.11802,1.11791,1.11824,1.11822,1.11834,1.11831,1.11844,1.11827,1.11822,1.11811,1.1179,1.11808,1.11803,1.118];
+    const closeList = [1.11766,1.11769,1.11774,1.11754,1.11797,1.11761,1.11763,1.11794,1.11769,1.11792,1.11821,1.11846,1.11805,1.11783,1.11795,1.11811,1.11809,1.11828,1.11753,1.1173,1.11751,1.11751,1.11761,1.11754,1.11755,1.11784,1.11811,1.11796,1.11806,1.11797,1.11783,1.1174,1.11751,1.11756,1.11763,1.11768,1.11791,1.11778,1.11827,1.11834,1.11858,1.11861,1.11869,1.11853,1.11842,1.1184,1.11806,1.11825,1.11831,1.11835,1.11843,1.11851,1.11857,1.11838,1.11829,1.11827,1.11827,1.1181,1.11823,1.118];
+    const [fastK_Period, slowK_Period, slowD_Period] = [5,3,3];
+      
+    console.log('0', STOCH({
+      high: highList,
+      low: lowList,
+      close: closeList,
+      fastK_Period,
+      slowK_Period,
+      slowK_MAType: 0,
+      slowD_Period,
+      slowD_MAType: 0,
+    }));
+    console.log('1', STOCH({
+      high: highList,
+      low: lowList,
+      close: closeList,
+      fastK_Period,
+      slowK_Period,
+      slowK_MAType: 1,
+      slowD_Period,
+      slowD_MAType: 1,
+    }));
+    console.log('2', STOCH({
+      high: highList,
+      low: lowList,
+      close: closeList,
+      fastK_Period,
+      slowK_Period,
+      slowK_MAType: 2,
+      slowD_Period,
+      slowD_MAType: 2,
+    }));
+    console.log('3', STOCH({
+      high: highList,
+      low: lowList,
+      close: closeList,
+      fastK_Period,
+      slowK_Period,
+      slowK_MAType: 3,
+      slowD_Period,
+      slowD_MAType: 3,
+    }));
+    console.log('4', STOCH({
+      high: highList,
+      low: lowList,
+      close: closeList,
+      fastK_Period,
+      slowK_Period,
+      slowK_MAType: 4,
+      slowD_Period,
+      slowD_MAType: 4,
+    }));
+    console.log('5', STOCH({
+      high: highList,
+      low: lowList,
+      close: closeList,
+      fastK_Period,
+      slowK_Period,
+      slowK_MAType: 5,
+      slowD_Period,
+      slowD_MAType: 5,
+    }));
+    console.log('6', STOCH({
+      high: highList,
+      low: lowList,
+      close: closeList,
+      fastK_Period,
+      slowK_Period,
+      slowK_MAType: 6,
+      slowD_Period,
+      slowD_MAType: 6,
+    }));
+    console.log('7', STOCH({
+      high: highList,
+      low: lowList,
+      close: closeList,
+      fastK_Period,
+      slowK_Period,
+      slowK_MAType: 7,
+      slowD_Period,
+      slowD_MAType: 7,
+    }));
+    console.log('8', STOCH({
+      high: highList,
+      low: lowList,
+      close: closeList,
+      fastK_Period,
+      slowK_Period,
+      slowK_MAType: 8,
+      slowD_Period,
+      slowD_MAType: 8,
+    }));
   </script>
 </body>
 </html>

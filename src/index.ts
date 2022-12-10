@@ -174,7 +174,7 @@ function callFunc(api: APIDescriptor, params: any): any {
 
   let { startIdx, endIdx } = params;
   if (startIdx === undefined) startIdx = 0;
-  const reqParamsLen = api.inputs.map(({ name }) => params[name].length);
+  const reqParamsLen = api.inputs.map(({ name }) => params[name].length - 1);
   if (endIdx === undefined) {
     // endIdx safely set to the min of all input arrays
     endIdx = Math.min(...reqParamsLen);
@@ -193,7 +193,7 @@ function callFunc(api: APIDescriptor, params: any): any {
   const memToFree = [];
 
   api.inputs.forEach(({ name }) => {
-    const argArray = double_array(endIdx - startIdx);
+    const argArray = double_array(endIdx - startIdx + 1);
     /** @type {number[]} */
     const paramArray = params[name];
     for (const i in paramArray) argArray.data[i] = paramArray[i];
@@ -211,7 +211,7 @@ function callFunc(api: APIDescriptor, params: any): any {
   args.push(outNBElementRef.pointer);
 
   const outputs = api.outputs.map(({ name }) => {
-    const argArray = double_array(endIdx - startIdx);
+    const argArray = double_array(endIdx - startIdx + 1);
     memToFree.push(argArray.pointer);
     args.push(argArray.pointer);
     return { name, array: argArray };
@@ -229,7 +229,7 @@ function callFunc(api: APIDescriptor, params: any): any {
 
   const result = outputs.reduce(
     (result, current) => {
-      const data = Array.from(current.array.data.slice(0, outNBElement));
+      const data = new Array(outBegIdx).fill(0).concat(Array.from(current.array.data.slice(0, endIdx - outBegIdx + 1)));
       result[current.name] = data;
       return result;
     },
