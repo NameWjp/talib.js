@@ -174,7 +174,7 @@ function callFunc(api: APIDescriptor, params: any): any {
 
   let { startIdx, endIdx } = params;
   if (startIdx === undefined) startIdx = 0;
-  const reqParamsLen = api.inputs.map(({ name }) => params[name].length - 1);
+  const reqParamsLen = api.inputs.map(({ name }) => Math.max(params[name].length - 1, 0));
   if (endIdx === undefined) {
     // endIdx safely set to the min of all input arrays
     endIdx = Math.min(...reqParamsLen);
